@@ -1,0 +1,6 @@
+{
+  "apKey": "c2554a11d0f27a9208278ff6649f70eb",
+  "privateKey": "-----BEGIN EC PRIVATE KEY-----\nMHcCAQEEIORjLlCLWeYEa+ucy2QsM2A7Z7DA3WonZOnr/V6EvI6loAoGCCqGSM49\nAwEHoUQDQgAELYJenygoIyKZz80PUau/16dlYMWrrAa/FPakMWFJJ+5i49POmcB6\nyFMKWFghCx+145ZnWE9rJ7PksEh8szGIzg==\n-----END EC PRIVATE KEY-----",
+  "wsUrl": "wss://proxy.staging.ptlab.link",
+  "httpUrl": "https://proxy.staging.ptlab.link"
+}
