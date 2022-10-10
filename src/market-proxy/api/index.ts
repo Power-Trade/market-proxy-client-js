@@ -1,5 +1,5 @@
 import MarketProxyWs from '../base/MarketProxyWs';
-import { Config, OpenOrder, Order, OrderRequest } from '../types';
+import { Config, OrderRequest } from '../types';
 import { generateAccessToken } from '../utils/cryptography';
 import { authenticate } from './authenticate';
 import { cancelAllOpenOrders } from './cancelAllOpenOrders';
@@ -8,15 +8,16 @@ import { placeBulkOrderWs } from './placeBulkOrderWs';
 import { placeOrderWs } from './placeOrderWs';
 
 class MarketProxyApi {
-  private ws: MarketProxyWs;
+  public ws: MarketProxyWs;
 
-  constructor(config: Config) {
+  constructor(config: Config, onOpen: (api: MarketProxyApi) => void) {
     const accessToken = generateAccessToken(config.apiKey, config.privateKey);
 
     this.ws = new MarketProxyWs({
       wsUrl: config.wsUrl,
       httpUrl: config.httpUrl,
       accessToken,
+      onOpen: () => onOpen(this),
     });
   }
 
@@ -30,3 +31,9 @@ class MarketProxyApi {
 
   public cancelAllOpenOrders = async () => await cancelAllOpenOrders(this.ws);
 }
+
+const getMarketProxyApi = (config: Config) => {
+  return new Promise<MarketProxyApi>((resolve) => new MarketProxyApi(config, resolve));
+};
+
+export default getMarketProxyApi;

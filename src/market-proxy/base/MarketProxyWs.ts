@@ -32,10 +32,12 @@ class MarketProxyWs {
     wsUrl,
     httpUrl,
     accessToken,
+    onOpen,
   }: {
     wsUrl: string;
     httpUrl: string;
     accessToken?: string;
+    onOpen: () => void;
   }) {
     this.wsUrl = wsUrl;
     this.httpUrl = httpUrl;
@@ -43,7 +45,7 @@ class MarketProxyWs {
 
     this.ws = new BaseWs({
       url: this.wsUrl,
-      onOpen: () => {},
+      onOpen,
       onClose: () => {},
       onMessage: this.onMessage,
     });
@@ -140,6 +142,8 @@ class MarketProxyWs {
     if (payload.error_code && payload.error_code !== '0') {
       throw new Error(payload.error_text);
     }
+
+    this.authenticated = true;
 
     return;
   };

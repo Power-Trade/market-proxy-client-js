@@ -1,3 +1,5 @@
+import WebSocket from 'ws';
+
 import { log } from '../utils/log';
 
 class BaseWs {
