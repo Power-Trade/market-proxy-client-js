@@ -29,6 +29,10 @@ describe('[WS] Single Leg Placement', () => {
     symbols = entities.symbols;
   }, 10000);
 
+  afterAll(async () => {
+    await api.cancelAllOpenOrders();
+  });
+
   test('Single Leg Spot order', async () => {
     const order: OrderRequest = getOrderBase();
 
@@ -170,9 +174,5 @@ describe('[WS] Single Leg Placement', () => {
       state: 'accepted',
       timestamp: expect.any(Number),
     });
-  });
-
-  afterAll(async () => {
-    await api.cancelAllOpenOrders();
   });
 });

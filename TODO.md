@@ -7,7 +7,7 @@
 - [ ] Subscribe
 - [ ] Snapshot
 - [x] Place Single Leg Order
-- [ ] Place Multi leg Ordera
+- [x] Place Multi leg Orders
 - [ ] Place Bulk Order
 - [ ] Cancel Orders
 - [ ] Cancel All Orders
@@ -27,7 +27,7 @@
 - [ ] Positions
 - [ ] Orderbook
 - [ ] Place Single Leg Order
-- [ ] Place Multi leg Ordera
+- [ ] Place Multi leg Orders
 - [ ] Place Bulk Order
 - [ ] Cancel Orders
 - [ ] Cancel All Orders
