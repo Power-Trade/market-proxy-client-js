@@ -8,7 +8,7 @@ import { fetchOpenOrders } from './fetchOpenOrders';
 import { placeBulkOrderWs } from './placeBulkOrderWs';
 import { placeOrderWs } from './placeOrderWs';
 
-class MarketProxyApi {
+export class MarketProxyApi {
   public ws: MarketProxyWs;
 
   constructor(config: Config, onOpen: (api: MarketProxyApi) => void) {

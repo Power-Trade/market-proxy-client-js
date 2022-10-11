@@ -2,7 +2,7 @@ import axios from 'axios';
 import getMarketProxyApi from '../../market-proxy/api';
 import { getConfig, getEnvironment } from '../../market-proxy/base/config';
 
-test('fetch entities and rules works as expected', async () => {
+test('[WS] fetch entities and rules works as expected', async () => {
   const api = await getMarketProxyApi(getConfig());
 
   const entities = await api.fetchEntitiesAndRulesWs();

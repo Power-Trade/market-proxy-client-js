@@ -1,7 +1,7 @@
 import { getConfig } from '../../market-proxy/base/config';
 import getMarketProxyApi from '../../market-proxy/api';
 
-test('authenticates with the right credentials works', async () => {
+test('[WS] authenticates with the right credentials works', async () => {
   const config = getConfig();
 
   const api = await getMarketProxyApi(config);
@@ -13,7 +13,7 @@ test('authenticates with the right credentials works', async () => {
   expect(api.ws.authenticated).toEqual(true);
 });
 
-test('authenticates with the wrong credentials fails', async () => {
+test('[WS] authenticates with the wrong credentials fails', async () => {
   const config = getConfig();
 
   config.apiKey = 'f9179d30456b8cb487d08d9fbe9d3e38';

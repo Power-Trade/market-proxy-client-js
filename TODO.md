@@ -3,10 +3,10 @@
 ## WebSocket
 
 - [x] Authenticate
-- [ ] Entities and Rules
+- [x] Entities and Rules
 - [ ] Subscribe
 - [ ] Snapshot
-- [ ] Place Single Leg Order
+- [x] Place Single Leg Order
 - [ ] Place Multi leg Ordera
 - [ ] Place Bulk Order
 - [ ] Cancel Orders
