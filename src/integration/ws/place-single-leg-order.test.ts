@@ -31,6 +31,7 @@ describe('[WS] Single Leg Placement', () => {
 
   afterAll(async () => {
     await api.cancelAllOpenOrders();
+    await api.close();
   });
 
   test('Single Leg Spot order', async () => {

@@ -22,6 +22,8 @@ export class MarketProxyApi {
     });
   }
 
+  public close = async () => await this.ws.close();
+
   public authenticate = async () => await authenticate(this.ws);
 
   public placeOrderWs = async (order: OrderRequest) => await placeOrderWs(this.ws, order);

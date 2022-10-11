@@ -27,6 +27,7 @@ class MarketProxyWs {
       reject: (args: [RequestName, any]) => void;
     }
   > = {};
+  private onCloseHandler?: () => void;
 
   constructor({
     wsUrl,
@@ -46,10 +47,23 @@ class MarketProxyWs {
     this.ws = new BaseWs({
       url: this.wsUrl,
       onOpen,
-      onClose: () => {},
+      onClose: this.onClose,
       onMessage: this.onMessage,
     });
   }
+
+  public close = async () => {
+    return new Promise<void>((resolve) => {
+      this.onCloseHandler = resolve;
+      this.ws.close();
+    });
+  };
+
+  private onClose = () => {
+    if (this.onCloseHandler) {
+      this.onCloseHandler();
+    }
+  };
 
   private onMessage = (payload: any) => {
     const event = Object.keys(payload)[0];

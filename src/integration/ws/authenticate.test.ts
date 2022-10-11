@@ -11,6 +11,8 @@ test('[WS] authenticates with the right credentials works', async () => {
   await api.authenticate();
 
   expect(api.ws.authenticated).toEqual(true);
+
+  await api.close();
 });
 
 test('[WS] authenticates with the wrong credentials fails', async () => {
@@ -31,4 +33,6 @@ Io5hH9GM/xRKmAwadUp1jPQpwUjyaEzUvQ==
   await expect(api.authenticate()).rejects.toThrow();
 
   expect(api.ws.authenticated).toEqual(false);
+
+  await api.close();
 });

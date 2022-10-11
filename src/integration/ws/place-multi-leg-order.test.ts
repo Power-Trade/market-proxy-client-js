@@ -19,6 +19,7 @@ describe('[WS] Multi Leg Placement', () => {
 
   afterAll(async () => {
     await api.cancelAllOpenOrders();
+    await api.close();
   });
 
   test('Multi Leg Option order by symbols', async () => {

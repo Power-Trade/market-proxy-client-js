@@ -8,7 +8,7 @@
 - [ ] Snapshot
 - [x] Place Single Leg Order
 - [x] Place Multi leg Orders
-- [ ] Place Bulk Order
+- [x] Place Bulk Order
 - [ ] Cancel Orders
 - [ ] Cancel All Orders
 - [ ] Order Executions messages

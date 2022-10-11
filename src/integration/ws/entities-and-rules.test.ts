@@ -19,4 +19,6 @@ test('[WS] fetch entities and rules works as expected', async () => {
   expect(marketData.length).toBeTruthy();
 
   expect(marketData.length).toEqual(entities.symbols.length);
+
+  await api.close();
 }, 10000);
