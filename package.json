@@ -11,7 +11,7 @@
     "format": "prettier --write src/**/*/*.{ts,tsx,json,css}",
     "lint": "eslint ./src --ext .ts",
     "release": "standard-version",
-    "test": "jest",
+    "test": "jest --watch",
     "test:dev": "ENVIRONMENT=dev yarn test",
     "test:test": "ENVIRONMENT=test yarn test",
     "test:staging": "ENVIRONMENT=staging yarn test"

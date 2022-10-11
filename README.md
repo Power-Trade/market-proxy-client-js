@@ -2,6 +2,8 @@
 
 A TypeScript/JavaScript client library for [PowerTrade's API](https://api-docs-5180b.web.app/)
 
+Check out [./TODO.md] for project progress
+
 ## Setup
 
 Install dependencies

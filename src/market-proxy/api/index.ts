@@ -3,6 +3,7 @@ import { Config, OrderRequest } from '../types';
 import { generateAccessToken } from '../utils/cryptography';
 import { authenticate } from './authenticate';
 import { cancelAllOpenOrders } from './cancelAllOpenOrders';
+import { fetchEntitiesAndRulesWs } from './fetchEntitiesAndRulesWs';
 import { fetchOpenOrders } from './fetchOpenOrders';
 import { placeBulkOrderWs } from './placeBulkOrderWs';
 import { placeOrderWs } from './placeOrderWs';
@@ -30,6 +31,8 @@ class MarketProxyApi {
   public fetchOpenOrders = async () => await fetchOpenOrders(this.ws);
 
   public cancelAllOpenOrders = async () => await cancelAllOpenOrders(this.ws);
+
+  public fetchEntitiesAndRulesWs = async () => await fetchEntitiesAndRulesWs(this.ws);
 }
 
 const getMarketProxyApi = (config: Config) => {

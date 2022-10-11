@@ -114,7 +114,7 @@ class MarketProxyWs {
     }
   };
 
-  public sendTaggedRequest = (requestName: RequestName, payload: any) => {
+  public sendTaggedRequest = (requestName: RequestName, payload: any = {}) => {
     return new Promise<[RequestName, any]>((resolve, reject) => {
       const user_tag = getUserTag();
 

@@ -18,7 +18,8 @@ export type RequestName =
   | 'new_order'
   | 'order_accepted'
   | 'new_bulk_order'
-  | 'cancel_all_orders';
+  | 'cancel_all_orders'
+  | 'entities_and_rules_request';
 
 interface OrderLeg {
   symbol?: string;
@@ -111,4 +112,25 @@ export type OpenOrderResponseRaw = {
     utc_timestamp: string;
     open_orders: MarketProxyOpenOrderRaw[];
   };
+};
+
+export type EntitySymbolRaw = {
+  symbol: string;
+  tradeable_entity_id: string;
+  status: string;
+  base_asset: string;
+  quote_asset: string;
+  minimum_quantity: string;
+  maximum_quantity: string;
+  minimum_value: string;
+  maximum_value: string;
+  quantity_step: string;
+  price_step: string;
+  tags: string[];
+};
+
+export type EntitiesAndRulesResponseRaw = {
+  server_utc_timestamp: string;
+  user_tag: string;
+  symbols: EntitySymbolRaw[];
 };
