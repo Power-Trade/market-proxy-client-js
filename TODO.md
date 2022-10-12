@@ -9,7 +9,7 @@
 - [x] Place Single Leg Order
 - [x] Place Multi leg Orders
 - [x] Place Bulk Order
-- [ ] Cancel Orders
+- [x] Cancel Orders
 - [ ] Cancel All Orders
 - [ ] Order Executions messages
 - [ ] Order Rejection messages

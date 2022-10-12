@@ -3,6 +3,7 @@ import { Config, OrderRequest } from '../types';
 import { generateAccessToken } from '../utils/cryptography';
 import { authenticate } from './authenticate';
 import { cancelAllOpenOrdersRest } from './cancelAllOpenOrdersRest';
+import { cancelAllOpenOrdersWs, CancelAllOpenOrdersWsArgs } from './cancelAllOpenOrdersWs';
 import { cancelOpenOrderWs, CancelOpenOrderWsArgs } from './cancelOpenOrderWs';
 import { fetchEntitiesAndRulesWs } from './fetchEntitiesAndRulesWs';
 import { fetchOpenOrdersRest } from './fetchOpenOrdersRest';
@@ -34,6 +35,9 @@ export class MarketProxyApi {
   public placeBulkOrderWs = (orders: OrderRequest[]) => placeBulkOrderWs(this.ws, orders);
 
   public cancelOpenOrderWs = (args: CancelOpenOrderWsArgs) => cancelOpenOrderWs(this.ws, args);
+
+  public cancelAllOpenOrdersWs = (args?: CancelAllOpenOrdersWsArgs) =>
+    cancelAllOpenOrdersWs(this.ws, args);
 
   public fetchOpenOrdersRest = async () => await fetchOpenOrdersRest(this.ws);
 

@@ -1,6 +1,6 @@
 import getMarketProxyApi, { MarketProxyApi } from '../../market-proxy/api';
 import { getConfig } from '../../market-proxy/base/config';
-import { EntitySymbolRaw, OrderRequest } from '../../market-proxy/types';
+import { OrderRequest } from '../../market-proxy/types';
 import { sleep } from '../../market-proxy/utils/time';
 import { getUserTag } from '../../market-proxy/utils/userTag';
 
@@ -19,15 +19,11 @@ const getOrderBase = (): OrderRequest => ({
 
 describe('[WS] Cancel Order', () => {
   let api: MarketProxyApi;
-  let symbols: EntitySymbolRaw[];
 
   beforeAll(async () => {
     api = await getMarketProxyApi(getConfig());
 
     await api.authenticate();
-
-    const entities = await api.fetchEntitiesAndRulesWs();
-    symbols = entities.symbols;
   }, 10000);
 
   afterAll(async () => {
