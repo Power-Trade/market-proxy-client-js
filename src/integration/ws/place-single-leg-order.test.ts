@@ -30,7 +30,7 @@ describe('[WS] Single Leg Placement', () => {
   }, 10000);
 
   afterAll(async () => {
-    await api.cancelAllOpenOrders();
+    await api.cancelAllOpenOrdersRest();
     await api.close();
   });
 

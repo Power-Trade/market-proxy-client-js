@@ -19,7 +19,8 @@ export type RequestName =
   | 'order_accepted'
   | 'new_bulk_order'
   | 'cancel_all_orders'
-  | 'entities_and_rules_request';
+  | 'entities_and_rules_request'
+  | 'cancel_order';
 
 interface OrderLeg {
   symbol?: string;
@@ -133,4 +134,14 @@ export type EntitiesAndRulesResponseRaw = {
   server_utc_timestamp: string;
   user_tag: string;
   symbols: EntitySymbolRaw[];
+};
+
+export type CancelOrderResponseRaw = {
+  server_utc_timestamp: string;
+  utc_timestamp: string;
+  tradeable_entity_id: string;
+  symbol: string;
+  order_id: string;
+  client_order_id: string;
+  reason: string;
 };

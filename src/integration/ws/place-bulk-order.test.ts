@@ -31,13 +31,13 @@ describe('[WS] Single Leg Placement', () => {
   }, 10000);
 
   afterAll(async () => {
-    await api.cancelAllOpenOrders();
+    await api.cancelAllOpenOrdersRest();
     await api.close();
   });
 
   test('Bulk of Single Leg Spot orders', async () => {
-    await api.cancelAllOpenOrders();
-    let orders = await api.fetchOpenOrders();
+    await api.cancelAllOpenOrdersRest();
+    let orders = await api.fetchOpenOrdersRest();
 
     expect(orders.length).toEqual(0);
 
@@ -48,7 +48,7 @@ describe('[WS] Single Leg Placement', () => {
     ]);
 
     while (orders.length < 3) {
-      orders = await api.fetchOpenOrders();
+      orders = await api.fetchOpenOrdersRest();
       await sleep(200);
     }
 
@@ -102,8 +102,8 @@ describe('[WS] Single Leg Placement', () => {
   }, 10000);
 
   test('Bulk of Single Leg orders and RFQs', async () => {
-    await api.cancelAllOpenOrders();
-    let orders = await api.fetchOpenOrders();
+    await api.cancelAllOpenOrdersRest();
+    let orders = await api.fetchOpenOrdersRest();
 
     expect(orders.length).toEqual(0);
 
@@ -141,7 +141,7 @@ describe('[WS] Single Leg Placement', () => {
     ]);
 
     while (orders.length < 6) {
-      orders = await api.fetchOpenOrders();
+      orders = await api.fetchOpenOrdersRest();
       await sleep(200);
     }
 

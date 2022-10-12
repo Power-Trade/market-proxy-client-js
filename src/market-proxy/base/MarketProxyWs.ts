@@ -27,6 +27,13 @@ class MarketProxyWs {
       reject: (args: [RequestName, any]) => void;
     }
   > = {};
+  private orderIdHandlers: Record<
+    string,
+    {
+      resolve: (args: [RequestName, any]) => void;
+      reject: (args: [RequestName, any]) => void;
+    }
+  > = {};
   private onCloseHandler?: () => void;
 
   constructor({
@@ -80,10 +87,17 @@ class MarketProxyWs {
       payload[event].client_order_id &&
       this.clientOrderIdHandlers[payload[event].client_order_id]
     ) {
-      const tag = payload[event].client_order_id;
+      const id = payload[event].client_order_id;
 
-      this.clientOrderIdHandlers[tag].resolve([event as RequestName, payload[event]]);
-      delete this.clientOrderIdHandlers[tag];
+      this.clientOrderIdHandlers[id].resolve([event as RequestName, payload[event]]);
+      delete this.clientOrderIdHandlers[id];
+    }
+
+    if (event && payload[event].order_id && this.orderIdHandlers[payload[event].order_id]) {
+      const id = payload[event].order_id;
+
+      this.orderIdHandlers[id].resolve([event as RequestName, payload[event]]);
+      delete this.orderIdHandlers[id];
     }
 
     this.onMessageListeners.forEach((callback) => callback(event, payload[event]));
@@ -143,6 +157,16 @@ class MarketProxyWs {
       const clientOrderId = payload.client_order_id;
 
       this.clientOrderIdHandlers[clientOrderId] = { resolve, reject };
+
+      this.ws.send({ [requestName]: payload });
+    });
+  };
+
+  public sendOrderIdRequest = (requestName: RequestName, payload: any) => {
+    return new Promise<[RequestName, any]>((resolve, reject) => {
+      const orderId = payload.order_id;
+
+      this.orderIdHandlers[orderId] = { resolve, reject };
 
       this.ws.send({ [requestName]: payload });
     });
