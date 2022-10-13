@@ -10,6 +10,7 @@ import { fetchEntitiesAndRulesWs } from './ws/fetchEntitiesAndRulesWs';
 import { fetchOpenOrdersRest } from './rest/fetchOpenOrdersRest';
 import { placeBulkOrderWs } from './ws/placeBulkOrderWs';
 import { placeOrderWs } from './ws/placeOrderWs';
+import { exchangeInfoRest } from './rest/exchangeInfoRest';
 
 export class MarketProxyApi {
   public ws: MarketProxyWs;
@@ -45,6 +46,8 @@ export class MarketProxyApi {
   public cancelAllOpenOrdersRest = async () => await cancelAllOpenOrdersRest(this.ws);
 
   public apiTimeRest = async () => await apiTimeRest(this.ws);
+
+  public exchangeInfoRest = async () => await exchangeInfoRest(this.ws);
 }
 
 const getMarketProxyApi = (config: Config) => {

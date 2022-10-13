@@ -21,7 +21,7 @@
 ## REST API
 
 - [x] API Time
-- [ ] Exchange Info
+- [x] Exchange Info
 - [ ] Deliverable Info
 - [ ] Balances
 - [ ] Positions
