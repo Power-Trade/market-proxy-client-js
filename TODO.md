@@ -16,15 +16,15 @@
 - [ ] (De)Register for RFQs
 - [ ] Refresh Interest
 - [ ] Positions
-- [ ] Trades Messages
+- [ ] Trade Messages
 
 ## REST API
 
 - [x] API Time
 - [x] Exchange Info
-- [ ] Deliverable Info
-- [ ] Balances
-- [ ] Positions
+- [x] Deliverable Info
+- [x] Balances
+- [x] Positions
 - [ ] Orderbook
 - [ ] Place Single Leg Order
 - [ ] Place Multi leg Orders

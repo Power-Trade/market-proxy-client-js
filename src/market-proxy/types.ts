@@ -13,6 +13,8 @@ export type RfqTimeInForce = 'GTC' | 'IOC' | 'DAY';
 
 export type MarketType = 'firm' | 'rfq';
 
+export type ProductType = 'option' | 'perpetual' | 'future' | 'spot';
+
 export type RequestName =
   | 'authenticate'
   | 'new_order'
@@ -149,4 +151,24 @@ export type CancelOrderResponseRaw = {
 export type DeliverableInfoRaw = {
   symbol: string;
   deliverable_id: string;
+};
+
+export type BalanceRaw = {
+  deliverable_id: string;
+  symbol: string;
+  cash_balance: string;
+  available_balance: string;
+  reserved_balance: string;
+  timestamp: string;
+};
+
+export type PositionRaw = {
+  symbol: string;
+  deliverable_id: string;
+  product_type: ProductType;
+  timestamp: string;
+  side: string;
+  size: string;
+  average_entry_price: string;
+  mark_price: string;
 };

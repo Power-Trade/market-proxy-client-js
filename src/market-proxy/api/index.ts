@@ -12,6 +12,8 @@ import { placeBulkOrderWs } from './ws/placeBulkOrderWs';
 import { placeOrderWs } from './ws/placeOrderWs';
 import { exchangeInfoRest } from './rest/exchangeInfoRest';
 import { deliverableInfoRest } from './rest/deliverableInfoRest';
+import { balanceRest } from './rest/balanceRest';
+import { positionsRest } from './rest/positionsRest';
 
 export class MarketProxyApi {
   public ws: MarketProxyWs;
@@ -51,6 +53,10 @@ export class MarketProxyApi {
   public exchangeInfoRest = async () => await exchangeInfoRest(this.ws);
 
   public deliverableInfoRest = async () => await deliverableInfoRest(this.ws);
+
+  public balanceRest = async () => await balanceRest(this.ws);
+
+  public positionsRest = async () => await positionsRest(this.ws);
 }
 
 const getMarketProxyApi = (config: Config) => {

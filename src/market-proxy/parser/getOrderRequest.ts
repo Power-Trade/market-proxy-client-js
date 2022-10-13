@@ -22,11 +22,18 @@ export const getOrderRequest = ({
     type: orderType.toUpperCase(),
     time_in_force: timeInForce,
     client_order_id: clientOrderId,
-    recv_window: activeCycles.toString(),
   };
 
-  if (marketType !== 'rfq') {
+  if (marketType !== 'rfq' && orderType !== 'Market') {
     payload.price = price.toString();
+  }
+
+  if (orderType !== 'Market') {
+    payload.recv_window = activeCycles.toString();
+  }
+
+  if (orderType === 'Market' && timeInForce !== 'IOC') {
+    throw new Error('Market order time in force must be IOC');
   }
 
   if (legs && minimumQuantity !== undefined) {
