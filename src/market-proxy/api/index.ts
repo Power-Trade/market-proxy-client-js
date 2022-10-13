@@ -1,14 +1,15 @@
 import MarketProxyWs from '../base/MarketProxyWs';
 import { Config, OrderRequest } from '../types';
 import { generateAccessToken } from '../utils/cryptography';
-import { authenticate } from './authenticate';
-import { cancelAllOpenOrdersRest } from './cancelAllOpenOrdersRest';
-import { cancelAllOpenOrdersWs, CancelAllOpenOrdersWsArgs } from './cancelAllOpenOrdersWs';
-import { cancelOpenOrderWs, CancelOpenOrderWsArgs } from './cancelOpenOrderWs';
-import { fetchEntitiesAndRulesWs } from './fetchEntitiesAndRulesWs';
-import { fetchOpenOrdersRest } from './fetchOpenOrdersRest';
-import { placeBulkOrderWs } from './placeBulkOrderWs';
-import { placeOrderWs } from './placeOrderWs';
+import { apiTimeRest } from './rest/apiTimeRest';
+import { authenticate } from './ws/authenticate';
+import { cancelAllOpenOrdersRest } from './rest/cancelAllOpenOrdersRest';
+import { cancelAllOpenOrdersWs, CancelAllOpenOrdersWsArgs } from './ws/cancelAllOpenOrdersWs';
+import { cancelOpenOrderWs, CancelOpenOrderWsArgs } from './ws/cancelOpenOrderWs';
+import { fetchEntitiesAndRulesWs } from './ws/fetchEntitiesAndRulesWs';
+import { fetchOpenOrdersRest } from './rest/fetchOpenOrdersRest';
+import { placeBulkOrderWs } from './ws/placeBulkOrderWs';
+import { placeOrderWs } from './ws/placeOrderWs';
 
 export class MarketProxyApi {
   public ws: MarketProxyWs;
@@ -42,6 +43,8 @@ export class MarketProxyApi {
   public fetchOpenOrdersRest = async () => await fetchOpenOrdersRest(this.ws);
 
   public cancelAllOpenOrdersRest = async () => await cancelAllOpenOrdersRest(this.ws);
+
+  public apiTimeRest = async () => await apiTimeRest(this.ws);
 }
 
 const getMarketProxyApi = (config: Config) => {

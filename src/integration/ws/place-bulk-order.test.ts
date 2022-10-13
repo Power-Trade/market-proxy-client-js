@@ -39,7 +39,11 @@ describe('[WS] Single Leg Placement', () => {
     await api.cancelAllOpenOrdersRest();
     let orders = await api.fetchOpenOrdersRest();
 
-    expect(orders.length).toEqual(0);
+    while (orders.length !== 0) {
+      await api.cancelAllOpenOrdersRest();
+      orders = await api.fetchOpenOrdersRest();
+      await sleep(200);
+    }
 
     await api.placeBulkOrderWs([
       getOrderBase(),
@@ -99,6 +103,8 @@ describe('[WS] Single Leg Placement', () => {
       isMultiLeg: false,
       isMarketProxyOrder: true,
     });
+
+    await api.cancelAllOpenOrdersRest();
   }, 10000);
 
   test('Bulk of Single Leg orders and RFQs', async () => {
@@ -107,34 +113,48 @@ describe('[WS] Single Leg Placement', () => {
 
     expect(orders.length).toEqual(0);
 
+    const { symbol: futureSymbol, tradeable_entity_id: futureTeId } = symbols.find(
+      (s) => s.tags.indexOf('future') > -1
+    )!;
+    const { symbol: optionSymbol, tradeable_entity_id: optionTeId } = symbols.find(
+      (s) => s.tags.indexOf('option') > -1
+    )!;
+    const perpTeId = symbols.find((s) => s.symbol === 'BTC-USD-PERPETUAL')!.tradeable_entity_id;
+
     await api.placeBulkOrderWs([
       {
         ...getOrderBase(),
-        symbol: symbols.find((s) => s.tags.indexOf('future') > -1)?.symbol,
+        symbol: futureSymbol,
+        tradeableEntityId: undefined,
       },
       {
         ...getOrderBase(),
-        symbol: symbols.find((s) => s.tags.indexOf('option') > -1)?.symbol,
+        symbol: undefined,
+        tradeableEntityId: optionTeId,
       },
       {
         ...getOrderBase(),
         symbol: 'BTC-USD-PERPETUAL',
+        tradeableEntityId: undefined,
       },
       {
         ...getOrderBase(),
-        symbol: symbols.find((s) => s.tags.indexOf('future') > -1)?.symbol,
+        symbol: undefined,
+        tradeableEntityId: futureTeId,
         marketType: 'rfq',
         price: 0,
       },
       {
         ...getOrderBase(),
-        symbol: symbols.find((s) => s.tags.indexOf('option') > -1)?.symbol,
+        symbol: optionSymbol,
+        tradeableEntityId: undefined,
         marketType: 'rfq',
         price: 0,
       },
       {
         ...getOrderBase(),
-        symbol: 'BTC-USD-PERPETUAL',
+        symbol: undefined,
+        tradeableEntityId: perpTeId,
         marketType: 'rfq',
         price: 0,
       },
@@ -158,8 +178,8 @@ describe('[WS] Single Leg Placement', () => {
       price: NaN,
       quantity: 1,
       side: 'buy',
-      symbol: 'BTC-20221028-21500P',
-      tradeableEntityId: '3786',
+      symbol: optionSymbol,
+      tradeableEntityId: optionTeId,
     });
 
     expect(orders).toContainEqual({
@@ -175,8 +195,8 @@ describe('[WS] Single Leg Placement', () => {
       price: NaN,
       quantity: 1,
       side: 'buy',
-      symbol: 'ETH-20221021',
-      tradeableEntityId: '3776',
+      symbol: futureSymbol,
+      tradeableEntityId: futureTeId,
     });
 
     expect(orders).toContainEqual({
@@ -193,7 +213,7 @@ describe('[WS] Single Leg Placement', () => {
       quantity: 1,
       side: 'buy',
       symbol: 'BTC-USD-PERPETUAL',
-      tradeableEntityId: '13',
+      tradeableEntityId: perpTeId,
     });
 
     expect(orders).toContainEqual({
@@ -210,7 +230,7 @@ describe('[WS] Single Leg Placement', () => {
       quantity: 1,
       side: 'buy',
       symbol: 'BTC-USD-PERPETUAL',
-      tradeableEntityId: '13',
+      tradeableEntityId: perpTeId,
     });
 
     expect(orders).toContainEqual({
@@ -226,8 +246,8 @@ describe('[WS] Single Leg Placement', () => {
       price: 10000,
       quantity: 1,
       side: 'buy',
-      symbol: 'BTC-20221028-21500P',
-      tradeableEntityId: '3786',
+      symbol: optionSymbol,
+      tradeableEntityId: optionTeId,
     });
 
     expect(orders).toContainEqual({
@@ -243,8 +263,8 @@ describe('[WS] Single Leg Placement', () => {
       price: 10000,
       quantity: 1,
       side: 'buy',
-      symbol: 'ETH-20221021',
-      tradeableEntityId: '3776',
+      symbol: futureSymbol,
+      tradeableEntityId: futureTeId,
     });
-  }, 10000);
+  }, 15000);
 });

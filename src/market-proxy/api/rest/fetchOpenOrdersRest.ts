@@ -1,6 +1,6 @@
-import MarketProxyWs from '../base/MarketProxyWs';
-import { parseOpenOrder } from '../parser/parseOpenOrder';
-import { OpenOrder, OpenOrderResponseRaw } from '../types';
+import MarketProxyWs from '../../base/MarketProxyWs';
+import { parseOpenOrder } from '../../parser/parseOpenOrder';
+import { OpenOrder, OpenOrderResponseRaw } from '../../types';
 
 export const fetchOpenOrdersRest = async (ws: MarketProxyWs): Promise<OpenOrder[]> => {
   const response = await ws.restCall<OpenOrderResponseRaw>({

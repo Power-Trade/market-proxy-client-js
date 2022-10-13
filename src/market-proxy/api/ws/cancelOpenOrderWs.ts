@@ -1,5 +1,5 @@
-import MarketProxyWs from '../base/MarketProxyWs';
-import { getUserTag } from '../utils/userTag';
+import MarketProxyWs from '../../base/MarketProxyWs';
+import { getUserTag } from '../../utils/userTag';
 
 export type CancelOpenOrderWsArgs = { orderId?: string; clientOrderId?: string };
 

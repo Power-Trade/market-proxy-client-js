@@ -1,5 +1,5 @@
-import MarketProxyWs from '../base/MarketProxyWs';
-import { log } from '../utils/log';
+import MarketProxyWs from '../../base/MarketProxyWs';
+import { log } from '../../utils/log';
 
 export const cancelOpenOrderRest = async (ws: MarketProxyWs, orderId: string) => {
   const r = await ws.restCall({

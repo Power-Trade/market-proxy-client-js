@@ -1,8 +1,8 @@
-import MarketProxyWs from '../base/MarketProxyWs';
-import { getOrderRequest } from '../parser/getOrderRequest';
-import { OrderRequest } from '../types';
-import { log } from '../utils/log';
-import { getUserTag } from '../utils/userTag';
+import MarketProxyWs from '../../base/MarketProxyWs';
+import { getOrderRequest } from '../../parser/getOrderRequest';
+import { OrderRequest } from '../../types';
+import { log } from '../../utils/log';
+import { getUserTag } from '../../utils/userTag';
 
 export const placeOrderWs = async (ws: MarketProxyWs, order: OrderRequest) => {
   const [responseName, payload] = await ws.sendClientOrderIdRequest('new_order', {

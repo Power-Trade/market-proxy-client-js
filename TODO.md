@@ -10,7 +10,7 @@
 - [x] Place Multi leg Orders
 - [x] Place Bulk Order
 - [x] Cancel Orders
-- [ ] Cancel All Orders
+- [x] Cancel All Orders
 - [ ] Order Executions messages
 - [ ] Order Rejection messages
 - [ ] (De)Register for RFQs
@@ -20,7 +20,7 @@
 
 ## REST API
 
-- [ ] API Time
+- [x] API Time
 - [ ] Exchange Info
 - [ ] Deliverable Info
 - [ ] Balances

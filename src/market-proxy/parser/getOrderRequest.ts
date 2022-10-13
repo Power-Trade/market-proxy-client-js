@@ -35,10 +35,14 @@ export const getOrderRequest = ({
       sym: l.symbol,
       tid: l.tradeableEntityId,
     }));
+  } else if (symbol && tradeableEntityId) {
+    throw new Error(`Please specify symbol or tradeable entity id`);
   } else if (symbol) {
     payload.symbol = symbol;
+    delete payload.tradeable_entity_id;
   } else if (tradeableEntityId) {
-    payload.tradeableEntityId = tradeableEntityId;
+    payload.tradeable_entity_id = tradeableEntityId;
+    delete payload.symbol;
   } else {
     log('order is missing symbol or tid or legs');
   }
