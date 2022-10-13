@@ -145,3 +145,8 @@ export type CancelOrderResponseRaw = {
   client_order_id: string;
   reason: string;
 };
+
+export type DeliverableInfoRaw = {
+  symbol: string;
+  deliverable_id: string;
+};
