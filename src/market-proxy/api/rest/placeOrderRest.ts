@@ -8,8 +8,6 @@ export const placeOrderRest = async (ws: MarketProxyWs, order: OrderRequest) => 
     method: 'POST',
   })) as any;
 
-  console.log(JSON.stringify(response));
-
   if (response.order_accepted) {
     return {
       ...order,

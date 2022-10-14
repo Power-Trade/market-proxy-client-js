@@ -26,6 +26,7 @@ export type RequestName =
   | 'new_bulk_order'
   | 'cancel_all_orders'
   | 'entities_and_rules_request'
+  | 'refresh_interest'
   | 'cancel_order';
 
 interface OrderLeg {
@@ -216,6 +217,14 @@ export type RefreshRfqInterestRestRaw = {
   order_id: string;
   client_order_id: string;
   timestamp: string;
+  reason: string;
+};
+
+export type RefreshRfqInterestWsRaw = {
+  server_utc_timestamp: string;
+  order_id: string;
+  client_order_id: string;
+  user_tag: string;
   reason: string;
 };
 

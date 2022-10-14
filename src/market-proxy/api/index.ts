@@ -19,6 +19,7 @@ import { getOrderDetailsRest, GetOrderDetailsRestArgs } from './rest/getOrderDet
 import { refreshRfqInterestRest, RefreshRfqInterestRestArgs } from './rest/refreshRfqInterestRest';
 import { orderbookRest, OrderbookRestArgs } from './rest/orderbookRest';
 import { placeOrderRest } from './rest/placeOrderRest';
+import { refreshRfqInterestWs } from './ws/refreshRfqInterestWs';
 
 export class MarketProxyApi {
   public ws: MarketProxyWs;
@@ -36,6 +37,7 @@ export class MarketProxyApi {
 
   public close = async () => await this.ws.close();
 
+  // WebSocket
   public authenticate = async () => await authenticate(this.ws);
 
   public fetchEntitiesAndRulesWs = async () => await fetchEntitiesAndRulesWs(this.ws);
@@ -49,11 +51,15 @@ export class MarketProxyApi {
   public cancelAllOpenOrdersWs = (args?: CancelAllOpenOrdersWsArgs) =>
     cancelAllOpenOrdersWs(this.ws, args);
 
+  public refreshRfqInterestWs = (args: RefreshRfqInterestRestArgs) =>
+    refreshRfqInterestWs(this.ws, args);
+
+  // REST
+  public apiTimeRest = async () => await apiTimeRest(this.ws);
+
   public fetchOpenOrdersRest = async () => await fetchOpenOrdersRest(this.ws);
 
   public cancelAllOpenOrdersRest = async () => await cancelAllOpenOrdersRest(this.ws);
-
-  public apiTimeRest = async () => await apiTimeRest(this.ws);
 
   public exchangeInfoRest = async () => await exchangeInfoRest(this.ws);
 

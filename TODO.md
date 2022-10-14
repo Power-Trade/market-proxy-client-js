@@ -10,11 +10,11 @@
 - [x] Place Multi leg Orders
 - [x] Place Bulk Order
 - [x] Cancel Orders
-- [x] Cancel All Orders
+- [-] BLOCKED: Cancel All Orders
 - [ ] Order Executions messages
 - [ ] Order Rejection messages
 - [ ] (De)Register for RFQs
-- [ ] Refresh Interest
+- [x] Refresh Interest
 - [ ] Positions
 - [ ] Trade Messages
 
@@ -27,8 +27,8 @@
 - [x] Positions
 - [x] Orderbook
 - [x] Place Single Leg Order
-- [ ] Place Multi leg Orders
-- [ ] Place Bulk Order
+- [-] BLOCKED: Place Multi leg Orders
+- [-] BLOCKED: Place Bulk Order
 - [x] Cancel Orders
 - [x] Cancel All Orders
 - [x] Get Order Details
