@@ -14,10 +14,10 @@
 .env.test.local
 .env.staging.local
 .env.production.local
-cfg.dev.json
-cfg.test.json
-cfg.staging.json
-cfg.production.json
+config.dev.json
+config.test.json
+config.staging.json
+config.production.json
 test.json
 
 npm-debug.log*
