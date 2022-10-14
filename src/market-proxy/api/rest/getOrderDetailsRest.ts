@@ -30,7 +30,5 @@ export const getOrderDetailsRest = async (
     method: 'GET',
   })) as { query_order_response: OrderDetailsRestRaw };
 
-  console.log(JSON.stringify(response));
-
   return response.query_order_response;
 };
