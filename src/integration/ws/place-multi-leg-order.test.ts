@@ -1,20 +1,19 @@
 import getMarketProxyApi, { MarketProxyApi } from '../../market-proxy/api';
 import { getConfig } from '../../market-proxy/base/config';
-import { EntitySymbolRaw, OrderRequest } from '../../market-proxy/types';
+import { EntitySymbolRaw, OrderRequest, TradeableEntity } from '../../market-proxy/types';
 import { toNumber } from '../../market-proxy/utils/number';
 import { getUserTag } from '../../market-proxy/utils/userTag';
 
 describe('[WS] Multi Leg Placement', () => {
   let api: MarketProxyApi;
-  let symbols: EntitySymbolRaw[];
+  let entities: TradeableEntity[];
 
   beforeAll(async () => {
     api = await getMarketProxyApi(getConfig());
 
     await api.authenticate();
 
-    const entities = await api.fetchEntitiesAndRulesWs();
-    symbols = entities.symbols;
+    entities = await api.fetchEntitiesAndRulesWs();
   }, 10000);
 
   afterAll(async () => {
@@ -23,8 +22,8 @@ describe('[WS] Multi Leg Placement', () => {
   });
 
   test('Multi Leg Option order by symbols', async () => {
-    const syms = symbols.filter((s) => s.tags.indexOf('option') > -1).slice(0, 10);
-    syms.sort((a, b) => toNumber(a.tradeable_entity_id) - toNumber(b.tradeable_entity_id));
+    const syms = entities.filter((s) => s.productType === 'option').slice(0, 10);
+    syms.sort((a, b) => toNumber(a.id) - toNumber(b.id));
 
     const order: OrderRequest = {
       activeCycles: 1,
@@ -63,8 +62,8 @@ describe('[WS] Multi Leg Placement', () => {
   });
 
   test('Multi Leg Option order by te ids', async () => {
-    const syms = symbols.filter((s) => s.tags.indexOf('option') > -1).slice(0, 10);
-    syms.sort((a, b) => toNumber(a.tradeable_entity_id) - toNumber(b.tradeable_entity_id));
+    const syms = entities.filter((s) => s.productType === 'option').slice(0, 10);
+    syms.sort((a, b) => toNumber(a.id) - toNumber(b.id));
 
     const order: OrderRequest = {
       activeCycles: 1,
@@ -103,8 +102,8 @@ describe('[WS] Multi Leg Placement', () => {
   });
 
   test('Multi Leg RFQ order by symbols', async () => {
-    const syms = symbols.filter((s) => s.tags.indexOf('option') > -1).slice(0, 10);
-    syms.sort((a, b) => toNumber(a.tradeable_entity_id) - toNumber(b.tradeable_entity_id));
+    const syms = entities.filter((s) => s.productType === 'option').slice(0, 10);
+    syms.sort((a, b) => toNumber(a.id) - toNumber(b.id));
 
     const order: OrderRequest = {
       activeCycles: 1,
@@ -143,8 +142,8 @@ describe('[WS] Multi Leg Placement', () => {
   });
 
   test('Multi Leg RFQ order by te ids', async () => {
-    const syms = symbols.filter((s) => s.tags.indexOf('option') > -1).slice(0, 10);
-    syms.sort((a, b) => toNumber(a.tradeable_entity_id) - toNumber(b.tradeable_entity_id));
+    const syms = entities.filter((s) => s.productType === 'option').slice(0, 10);
+    syms.sort((a, b) => toNumber(a.id) - toNumber(b.id));
 
     const order: OrderRequest = {
       activeCycles: 1,
@@ -183,8 +182,8 @@ describe('[WS] Multi Leg Placement', () => {
   });
 
   test('Multi Leg Option order fails if te ids are not ordered', async () => {
-    const syms = symbols.filter((s) => s.tags.indexOf('option') > -1).slice(0, 10);
-    syms.sort((a, b) => toNumber(a.tradeable_entity_id) - toNumber(b.tradeable_entity_id));
+    const syms = entities.filter((s) => s.productType === 'option').slice(0, 10);
+    syms.sort((a, b) => toNumber(a.id) - toNumber(b.id));
 
     const order: OrderRequest = {
       activeCycles: 1,
@@ -219,8 +218,8 @@ describe('[WS] Multi Leg Placement', () => {
   });
 
   test('Multi Leg Option order fails if more than 10 legs', async () => {
-    const syms = symbols.filter((s) => s.tags.indexOf('option') > -1).slice(0, 15);
-    syms.sort((a, b) => toNumber(a.tradeable_entity_id) - toNumber(b.tradeable_entity_id));
+    const syms = entities.filter((s) => s.productType === 'option').slice(0, 10);
+    syms.sort((a, b) => toNumber(a.id) - toNumber(b.id));
 
     const order: OrderRequest = {
       activeCycles: 1,

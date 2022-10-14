@@ -25,12 +25,12 @@
 - [x] Deliverable Info
 - [x] Balances
 - [x] Positions
-- [ ] Orderbook
+- [x] Orderbook
 - [ ] Place Single Leg Order
 - [ ] Place Multi leg Orders
 - [ ] Place Bulk Order
 - [x] Cancel Orders
 - [x] Cancel All Orders
 - [x] Get Order Details
-- [ ] Refresh RFQ Interest
+- [x] Refresh RFQ Interest
 - [x] Fetch Open Orders

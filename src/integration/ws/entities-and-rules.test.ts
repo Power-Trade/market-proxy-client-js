@@ -7,7 +7,7 @@ test('[WS] fetch entities and rules works as expected', async () => {
 
   const entities = await api.fetchEntitiesAndRulesWs();
 
-  expect(entities.symbols.length).toBeTruthy();
+  expect(entities.length).toBeTruthy();
 
   const env = getEnvironment();
 
@@ -18,7 +18,7 @@ test('[WS] fetch entities and rules works as expected', async () => {
 
   expect(marketData.length).toBeTruthy();
 
-  expect(marketData.length).toEqual(entities.symbols.length);
+  expect(marketData.length).toEqual(entities.length);
 
   await api.close();
 }, 10000);

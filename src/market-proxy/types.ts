@@ -15,6 +15,10 @@ export type MarketType = 'firm' | 'rfq';
 
 export type ProductType = 'option' | 'perpetual' | 'future' | 'spot';
 
+export type ProductTypeWithIndex = ProductType | 'index';
+
+export type OptionType = 'call' | 'put';
+
 export type RequestName =
   | 'authenticate'
   | 'new_order'
@@ -132,6 +136,25 @@ export type EntitySymbolRaw = {
   tags: string[];
 };
 
+export type TradeableEntity = {
+  id: string;
+  underlying: string;
+  symbol: string;
+  productType: ProductTypeWithIndex;
+  expiryTimeStamp?: number;
+  strike?: number;
+  optionType?: OptionType;
+  status: string;
+  baseAsset: string;
+  quoteAsset: string;
+  minimumQuantity: number;
+  maximumQuantity: number;
+  minimumValue: number;
+  maximumValue: number;
+  quantityStep: number;
+  priceStep: number;
+};
+
 export type EntitiesAndRulesResponseRaw = {
   server_utc_timestamp: string;
   user_tag: string;
@@ -194,4 +217,17 @@ export type RefreshRfqInterestRestRaw = {
   client_order_id: string;
   timestamp: string;
   reason: string;
+};
+
+export type OrderbookRestResponseRaw = {
+  server_utc_timestamp: string;
+  symbol: string;
+  buy: {
+    price: string;
+    quantity: string;
+  }[];
+  sell: {
+    price: string;
+    quantity: string;
+  }[];
 };
