@@ -31,6 +31,6 @@
 - [ ] Place Bulk Order
 - [x] Cancel Orders
 - [ ] Cancel All Orders
-- [ ] Get Order Details
+- [x] Get Order Details
 - [ ] Refresh RFQ Interest
 - [ ] Fetch Open Orders

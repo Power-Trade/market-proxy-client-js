@@ -172,3 +172,19 @@ export type PositionRaw = {
   average_entry_price: string;
   mark_price: string;
 };
+
+export type OrderDetailsRestRaw = {
+  utc_timestamp: string;
+  market_id: string;
+  tradeable_entity_id: string;
+  symbol: string;
+  type: string;
+  order_id: string;
+  client_order_id: string;
+  quantity: string;
+  price: string;
+  side: string;
+  order_state: string;
+  cancel_state: string;
+  executions: [];
+};

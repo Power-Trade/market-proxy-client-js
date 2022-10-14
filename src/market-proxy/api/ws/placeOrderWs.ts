@@ -15,6 +15,7 @@ export const placeOrderWs = async (ws: MarketProxyWs, order: OrderRequest) => {
   if (responseName === 'order_accepted') {
     return {
       ...order,
+      orderId: payload.order_id as string,
       state: 'accepted',
       timestamp: parseInt(payload.utc_timestamp, 10),
     };
@@ -22,6 +23,7 @@ export const placeOrderWs = async (ws: MarketProxyWs, order: OrderRequest) => {
 
   return {
     ...order,
+    orderId: '',
     state: 'rejected',
     timestamp: parseInt(payload.utc_timestamp, 10),
   };

@@ -15,6 +15,7 @@ import { deliverableInfoRest } from './rest/deliverableInfoRest';
 import { balanceRest } from './rest/balanceRest';
 import { positionsRest } from './rest/positionsRest';
 import { cancelOpenOrderRest, CancelOpenOrderRestArgs } from './rest/cancelOpenOrderRest';
+import { getOrderDetailsRest, GetOrderDetailsRestArgs } from './rest/getOrderDetailsRest';
 
 export class MarketProxyApi {
   public ws: MarketProxyWs;
@@ -61,6 +62,9 @@ export class MarketProxyApi {
 
   public cancelOpenOrderRest = async (args: CancelOpenOrderRestArgs) =>
     await cancelOpenOrderRest(this.ws, args);
+
+  public getOrderDetailsRest = async (args: GetOrderDetailsRestArgs) =>
+    await getOrderDetailsRest(this.ws, args);
 }
 
 const getMarketProxyApi = (config: Config) => {
