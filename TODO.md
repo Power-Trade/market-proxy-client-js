@@ -29,7 +29,7 @@
 - [ ] Place Single Leg Order
 - [ ] Place Multi leg Orders
 - [ ] Place Bulk Order
-- [ ] Cancel Orders
+- [x] Cancel Orders
 - [ ] Cancel All Orders
 - [ ] Get Order Details
 - [ ] Refresh RFQ Interest
