@@ -33,4 +33,4 @@
 - [x] Cancel All Orders
 - [x] Get Order Details
 - [ ] Refresh RFQ Interest
-- [ ] Fetch Open Orders
+- [x] Fetch Open Orders

@@ -188,3 +188,10 @@ export type OrderDetailsRestRaw = {
   cancel_state: string;
   executions: [];
 };
+
+export type RefreshRfqInterestRestRaw = {
+  order_id: string;
+  client_order_id: string;
+  timestamp: string;
+  reason: string;
+};

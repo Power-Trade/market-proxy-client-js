@@ -1,5 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios';
 import { RequestName } from '../types';
+import { log } from '../utils/log';
 import { getUserTag } from '../utils/userTag';
 import BaseWs from './BaseWs';
 
@@ -127,6 +128,8 @@ class MarketProxyWs {
             }
           : args.headers,
       });
+
+      log(response.data);
 
       return response.data as T;
     } catch (error: any) {

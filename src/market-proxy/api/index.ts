@@ -16,6 +16,7 @@ import { balanceRest } from './rest/balanceRest';
 import { positionsRest } from './rest/positionsRest';
 import { cancelOpenOrderRest, CancelOpenOrderRestArgs } from './rest/cancelOpenOrderRest';
 import { getOrderDetailsRest, GetOrderDetailsRestArgs } from './rest/getOrderDetailsRest';
+import { refreshRfqInterestRest, RefreshRfqInterestRestArgs } from './rest/refreshRfqInterestRest';
 
 export class MarketProxyApi {
   public ws: MarketProxyWs;
@@ -65,6 +66,9 @@ export class MarketProxyApi {
 
   public getOrderDetailsRest = async (args: GetOrderDetailsRestArgs) =>
     await getOrderDetailsRest(this.ws, args);
+
+  public refreshRfqInterestRest = async (args: RefreshRfqInterestRestArgs) =>
+    await refreshRfqInterestRest(this.ws, args);
 }
 
 const getMarketProxyApi = (config: Config) => {
