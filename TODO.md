@@ -26,7 +26,7 @@
 - [x] Balances
 - [x] Positions
 - [x] Orderbook
-- [ ] Place Single Leg Order
+- [x] Place Single Leg Order
 - [ ] Place Multi leg Orders
 - [ ] Place Bulk Order
 - [x] Cancel Orders

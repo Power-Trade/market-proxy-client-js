@@ -16,7 +16,7 @@ const getOrderBase = (): OrderRequest => ({
   symbol: 'BTC-USD',
 });
 
-describe('[WS] Single Leg Placement', () => {
+describe('[REST] Single Leg Placement', () => {
   let api: MarketProxyApi;
   let entities: TradeableEntity[];
 
@@ -36,7 +36,7 @@ describe('[WS] Single Leg Placement', () => {
   test('Single Leg Spot order', async () => {
     const order: OrderRequest = getOrderBase();
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
@@ -56,7 +56,7 @@ describe('[WS] Single Leg Placement', () => {
       symbol: 'ETH-USD',
     };
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
@@ -75,7 +75,7 @@ describe('[WS] Single Leg Placement', () => {
       symbol,
     };
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
@@ -96,7 +96,7 @@ describe('[WS] Single Leg Placement', () => {
       symbol,
     };
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
@@ -115,7 +115,7 @@ describe('[WS] Single Leg Placement', () => {
       symbol: 'BTC-USD-PERPETUAL',
     };
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
@@ -134,7 +134,7 @@ describe('[WS] Single Leg Placement', () => {
       symbol: 'ETH-USD-PERPETUAL',
     };
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
@@ -154,7 +154,7 @@ describe('[WS] Single Leg Placement', () => {
       symbol,
     };
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
@@ -174,7 +174,7 @@ describe('[WS] Single Leg Placement', () => {
       symbol,
     };
 
-    const orderResponse = await api.placeOrderWs(order);
+    const orderResponse = await api.placeOrderRest(order);
 
     expect(orderResponse).toEqual({
       ...order,
