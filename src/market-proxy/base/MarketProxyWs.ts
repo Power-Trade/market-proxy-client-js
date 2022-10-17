@@ -10,7 +10,7 @@ class MarketProxyWs {
   protected ws: BaseWs;
   public wsUrl: string;
   public httpUrl: string;
-  public authenticated: boolean = false;
+  public authenticated = false;
   public accessToken?: string;
 
   private onMessageListeners: OnMessageFn[] = [];

@@ -18,7 +18,7 @@ describe('[REST] Get Order Details', () => {
 
   test('get details by order id and client order id', async () => {
     await api.cancelAllOpenOrdersRest();
-    let orders = await api.fetchOpenOrdersRest();
+    const orders = await api.fetchOpenOrdersRest();
 
     expect(orders.length).toEqual(0);
 
@@ -76,7 +76,7 @@ describe('[REST] Get Order Details', () => {
 
   test('get details executions', async () => {
     await api.cancelAllOpenOrdersRest();
-    let orders = await api.fetchOpenOrdersRest();
+    const orders = await api.fetchOpenOrdersRest();
 
     expect(orders.length).toEqual(0);
 

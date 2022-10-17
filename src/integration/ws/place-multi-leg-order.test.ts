@@ -1,6 +1,6 @@
 import getMarketProxyApi, { MarketProxyApi } from '../../market-proxy/api';
 import { getConfig } from '../../market-proxy/base/config';
-import { EntitySymbolRaw, OrderRequest, TradeableEntity } from '../../market-proxy/types';
+import { OrderRequest, TradeableEntity } from '../../market-proxy/types';
 import { toNumber } from '../../market-proxy/utils/number';
 import { getUserTag } from '../../market-proxy/utils/userTag';
 
