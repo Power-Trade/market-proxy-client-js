@@ -13,7 +13,6 @@ export const getEnvironment = (): Environment => {
   const env = process.env.ENVIRONMENT as Environment;
 
   if (!environments[env]) {
-    console.warn(`No environment specified, using DEV`);
     return 'dev';
   }
 

@@ -214,11 +214,12 @@ describe('[WS] Multi Leg Placement', () => {
       ...order,
       state: 'rejected',
       timestamp: expect.any(Number),
+      orderId: expect.any(String),
     });
   });
 
   test('Multi Leg Option order fails if more than 10 legs', async () => {
-    const syms = entities.filter((s) => s.productType === 'option').slice(0, 10);
+    const syms = entities.filter((s) => s.productType === 'option').slice(0, 11);
     syms.sort((a, b) => toNumber(a.id) - toNumber(b.id));
 
     const order: OrderRequest = {
@@ -241,6 +242,7 @@ describe('[WS] Multi Leg Placement', () => {
       ...order,
       state: 'rejected',
       timestamp: expect.any(Number),
+      orderId: expect.any(String),
     });
   });
 });

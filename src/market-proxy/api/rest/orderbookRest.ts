@@ -27,7 +27,5 @@ export const orderbookRest = async (
     method: 'GET',
   })) as { orderbook_response: OrderbookRestResponseRaw };
 
-  console.log(JSON.stringify(response));
-
   return response.orderbook_response;
 };

@@ -7,7 +7,7 @@ test('[REST] fetch exchange info', async () => {
 
   const entities = await api.exchangeInfoRest();
 
-  expect(entities.symbols.length).toBeTruthy();
+  expect(entities.length).toBeTruthy();
 
   const env = getEnvironment();
 
@@ -18,7 +18,7 @@ test('[REST] fetch exchange info', async () => {
 
   expect(marketData.length).toBeTruthy();
 
-  expect(marketData.length).toEqual(entities.symbols.length);
+  expect(marketData.length).toEqual(entities.length);
 
   await api.close();
 }, 10000);

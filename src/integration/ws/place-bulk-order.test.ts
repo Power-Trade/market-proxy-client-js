@@ -1,6 +1,6 @@
 import getMarketProxyApi, { MarketProxyApi } from '../../market-proxy/api';
 import { getConfig } from '../../market-proxy/base/config';
-import { EntitySymbolRaw, OrderRequest } from '../../market-proxy/types';
+import { OrderRequest, TradeableEntity } from '../../market-proxy/types';
 import { getUserTag } from '../../market-proxy/utils/userTag';
 import { sleep } from '../../market-proxy/utils/time';
 
@@ -9,7 +9,7 @@ const getOrderBase = (): OrderRequest => ({
   clientOrderId: getUserTag(),
   marketType: 'firm',
   orderType: 'Limit',
-  price: 10000,
+  price: 100,
   quantity: 1,
   side: 'buy',
   state: 'new',
@@ -19,15 +19,14 @@ const getOrderBase = (): OrderRequest => ({
 
 describe('[WS] Single Leg Placement', () => {
   let api: MarketProxyApi;
-  let symbols: EntitySymbolRaw[];
+  let symbols: TradeableEntity[];
 
   beforeAll(async () => {
     api = await getMarketProxyApi(getConfig());
 
     await api.authenticate();
 
-    const entities = await api.fetchEntitiesAndRulesWs();
-    symbols = entities.symbols;
+    symbols = await api.fetchEntitiesAndRulesWs();
   }, 10000);
 
   afterAll(async () => {
@@ -47,8 +46,8 @@ describe('[WS] Single Leg Placement', () => {
 
     await api.placeBulkOrderWs([
       getOrderBase(),
-      { ...getOrderBase(), symbol: 'ETH-USD', quantity: 2, price: 1000 },
-      { ...getOrderBase(), symbol: 'PTF-USD', quantity: 1000, price: 0.2 },
+      { ...getOrderBase(), symbol: 'ETH-USD', quantity: 2, price: 100 },
+      { ...getOrderBase(), symbol: 'PTF-USD', quantity: 1000, price: 0.01 },
     ]);
 
     while (orders.length < 3) {
@@ -62,11 +61,11 @@ describe('[WS] Single Leg Placement', () => {
       executions: [],
       orderId: expect.any(String),
       orderState: 'accepted',
-      price: 0.2,
+      price: 0.01,
       quantity: 1000,
       side: 'buy',
       symbol: 'PTF-USD',
-      tradeableEntityId: symbols.find((s) => s.symbol === 'PTF-USD')?.tradeable_entity_id,
+      tradeableEntityId: symbols.find((s) => s.symbol === 'PTF-USD')?.id,
       marketType: 'firm',
       isMultiLeg: false,
       isMarketProxyOrder: true,
@@ -78,11 +77,11 @@ describe('[WS] Single Leg Placement', () => {
       executions: [],
       orderId: expect.any(String),
       orderState: 'accepted',
-      price: 1000,
+      price: 100,
       quantity: 2,
       side: 'buy',
       symbol: 'ETH-USD',
-      tradeableEntityId: symbols.find((s) => s.symbol === 'ETH-USD')?.tradeable_entity_id,
+      tradeableEntityId: symbols.find((s) => s.symbol === 'ETH-USD')?.id,
       marketType: 'firm',
       isMultiLeg: false,
       isMarketProxyOrder: true,
@@ -94,11 +93,11 @@ describe('[WS] Single Leg Placement', () => {
       executions: [],
       orderId: expect.any(String),
       orderState: 'accepted',
-      price: 10000,
+      price: 100,
       quantity: 1,
       side: 'buy',
       symbol: 'BTC-USD',
-      tradeableEntityId: symbols.find((s) => s.symbol === 'BTC-USD')?.tradeable_entity_id,
+      tradeableEntityId: symbols.find((s) => s.symbol === 'BTC-USD')?.id,
       marketType: 'firm',
       isMultiLeg: false,
       isMarketProxyOrder: true,
@@ -113,13 +112,13 @@ describe('[WS] Single Leg Placement', () => {
 
     expect(orders.length).toEqual(0);
 
-    const { symbol: futureSymbol, tradeable_entity_id: futureTeId } = symbols.find(
-      (s) => s.tags.indexOf('future') > -1
+    const { symbol: futureSymbol, id: futureTeId } = symbols.find(
+      (s) => s.productType === 'future'
     )!;
-    const { symbol: optionSymbol, tradeable_entity_id: optionTeId } = symbols.find(
-      (s) => s.tags.indexOf('option') > -1
+    const { symbol: optionSymbol, id: optionTeId } = symbols.find(
+      (s) => s.productType === 'option'
     )!;
-    const perpTeId = symbols.find((s) => s.symbol === 'BTC-USD-PERPETUAL')!.tradeable_entity_id;
+    const perpTeId = symbols.find((s) => s.symbol === 'BTC-USD-PERPETUAL')!.id;
 
     await api.placeBulkOrderWs([
       {
@@ -209,7 +208,7 @@ describe('[WS] Single Leg Placement', () => {
       marketType: 'firm',
       orderId: expect.any(String),
       orderState: 'accepted',
-      price: 10000,
+      price: 100,
       quantity: 1,
       side: 'buy',
       symbol: 'BTC-USD-PERPETUAL',
@@ -243,7 +242,7 @@ describe('[WS] Single Leg Placement', () => {
       marketType: 'firm',
       orderId: expect.any(String),
       orderState: 'accepted',
-      price: 10000,
+      price: 100,
       quantity: 1,
       side: 'buy',
       symbol: optionSymbol,
@@ -260,7 +259,7 @@ describe('[WS] Single Leg Placement', () => {
       marketType: 'firm',
       orderId: expect.any(String),
       orderState: 'accepted',
-      price: 10000,
+      price: 100,
       quantity: 1,
       side: 'buy',
       symbol: futureSymbol,
