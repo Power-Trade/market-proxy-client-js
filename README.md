@@ -2,7 +2,7 @@
 
 A TypeScript/JavaScript client library for [PowerTrade's API](https://api-docs-5180b.web.app/)
 
-Check out [./TODO.md] for project progress
+Check out [TODO.md](/TODO.md) for project progress
 
 ## Setup
 
